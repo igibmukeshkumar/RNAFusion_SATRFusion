@@ -41,7 +41,7 @@ Filter the combined fusion calls using the provided whitelist of normal fusions 
 python3 filter_fusion.py \
     --input test1.tsv \
     --output filtered_discovery_800aml.tsv \
-    --whitelist-file babiceanu_normal_fusions.txt \
+    --whitelist-file normal_fusions.txt \
     --min_junction_reads 2 \
     --min_spanning_frags 0 \
     --min_ffpm 0.1 \
