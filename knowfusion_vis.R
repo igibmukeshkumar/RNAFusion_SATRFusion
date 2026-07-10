@@ -102,3 +102,13 @@ samples_per_fusion<- fusion_summary_1 %>%
   group_by(Fusion) %>%
   summarise(Sample_Count = n(), .groups = "drop") %>%
   arrange(desc(Sample_Count))
+
+# report generation using the ChimeraViz tool in R
+if (known_only) {known_genes <- unique(unlist(strsplit(fusion_list, "--")))
+  fusion_summary_1 <- fusion %>%
+    separate(Fusion, into = c("Gene1", "Gene2"), sep = "--", remove = FALSE) %>%
+    filter(Gene1 %in% known_genes | Gene2 %in% known_genes) %>%
+    distinct(sample_name, Fusion, .keep_all = TRUE)}
+
+write.table(fusion_summary_1, file = "Known_AML_Fusions_All_Columns.txt", sep = "\t",
+  quote = FALSE,  row.names = FALSE,  col.names = TRUE)
